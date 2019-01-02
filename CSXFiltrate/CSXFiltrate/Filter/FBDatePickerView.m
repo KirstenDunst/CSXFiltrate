@@ -34,6 +34,7 @@
  */
 @property (nonatomic, assign) BOOL isShowTodayDate;
 
+@property (nonatomic, strong) NSMutableArray *monthShowArr;
 @end
 
 @implementation FBDatePickerView {
@@ -66,7 +67,7 @@
 }
 - (void)reset {
     [self.yearArray removeAllObjects];
-    [self.monthRemainingArray removeAllObjects];
+    [self.monthShowArr removeAllObjects];
     [self.dayRemainingArray removeAllObjects];
     [self initData];
     NSDate * date = [NSDate date];
@@ -81,7 +82,7 @@
     [yearPicker selectRow:[self.yearArray indexOfObject:year] inComponent:0 animated:YES];
     [yearPicker reloadAllComponents];
     [monthPicker reloadAllComponents];
-    [monthPicker selectRow:[self.monthRemainingArray indexOfObject:[NSString stringWithFormat:@"%d",([month intValue]-1)]] inComponent:0 animated:YES];
+    [monthPicker selectRow:[self.monthShowArr indexOfObject:[NSString stringWithFormat:@"%d",([month intValue]-1)]] inComponent:0 animated:YES];
     [monthPicker reloadAllComponents];
     [dayPicker reloadAllComponents];
     [dayPicker selectRow:([day intValue]-1) inComponent:0 animated:YES];
@@ -174,8 +175,8 @@
         for (NSInteger i = 0; i < 50; i++) {
             [self.yearArray addObject:[NSString stringWithFormat:@"%ld",currentYear + i]];
         }
-        
     }
+    self.monthShowArr = [NSMutableArray arrayWithArray:self.monthRemainingArray];
 }
 #pragma mark - 判断是否是闰年(返回的的值,天数)
 - (NSInteger)LeapYearCompare:(NSInteger)year withMonth:(NSInteger)month{
@@ -339,7 +340,7 @@
             case ShowTimeBeforeToday :
                 if ([self.yearArray[yearRow] integerValue] == currentYear) {
                     
-                    rowLabel.text = [NSString stringWithFormat:@"%ld",[self.monthRemainingArray[row] integerValue] + 1];
+                    rowLabel.text = [NSString stringWithFormat:@"%ld",[self.monthShowArr[row] integerValue] + 1];
                     
                 }else{
                     
@@ -352,7 +353,7 @@
             case ShowTimeAfterToday:
                 if ([self.yearArray[yearRow] integerValue] == currentYear) {
                     
-                    rowLabel.text = [NSString stringWithFormat:@"%ld",[self.monthRemainingArray[row] integerValue] + 1];
+                    rowLabel.text = [NSString stringWithFormat:@"%ld",[self.monthShowArr[row] integerValue] + 1];
                     
                 }else{
                     
@@ -441,15 +442,19 @@
  */
 - (NSInteger)MonthInSelectYear{
     NSInteger yearRow = [yearPicker selectedRowInComponent:0];
-    
+    NSInteger monthCount = 0;
     if ([self.yearArray[yearRow] integerValue] == currentYear) {
         
-        return self.monthRemainingArray.count;
+        monthCount = self.monthRemainingArray.count;
         
     }else{
-        return 12;
+        monthCount = 12;
     }
-    
+    [self.monthShowArr removeAllObjects];
+    for (int i = 0; i < monthCount; i++) {
+        [self.monthShowArr addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    return monthCount;
 }
 /**
  * 返回有多少天

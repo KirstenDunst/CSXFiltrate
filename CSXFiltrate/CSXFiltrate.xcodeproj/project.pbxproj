@@ -163,13 +163,13 @@
 			isa = PBXGroup;
 			children = (
 				DBA8EAD021B8A942005587D5 /* FBFiltrateView.h */,
-				DBA8EAD121B8A942005587D5 /* FBDatePickerView.m */,
-				DBA8EAD421B8A942005587D5 /* FBFiltrateModel.m */,
-				DBA8EAD521B8A942005587D5 /* FBTimeFiltrateView.m */,
 				DBA8EAD721B8A942005587D5 /* FBFiltrateView.m */,
-				DBA8EAD921B8A942005587D5 /* FBDatePickerView.h */,
-				DBA8EADA21B8A942005587D5 /* FBTimeFiltrateView.h */,
 				DBA8EADC21B8A942005587D5 /* FBFiltrateModel.h */,
+				DBA8EAD421B8A942005587D5 /* FBFiltrateModel.m */,
+				DBA8EADA21B8A942005587D5 /* FBTimeFiltrateView.h */,
+				DBA8EAD521B8A942005587D5 /* FBTimeFiltrateView.m */,
+				DBA8EAD921B8A942005587D5 /* FBDatePickerView.h */,
+				DBA8EAD121B8A942005587D5 /* FBDatePickerView.m */,
 				DBA8EAD321B8A942005587D5 /* ICMacro.h */,
 				DBA8EAD621B8A942005587D5 /* filter_selected@3x.png */,
 				DBA8EADB21B8A942005587D5 /* filtrate_clear@3x.png */,

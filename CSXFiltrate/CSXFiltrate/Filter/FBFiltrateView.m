@@ -325,7 +325,7 @@ typedef enum:NSInteger{
         }
     }
     
-    NSString *lastThreeDateForm = [self nsstringConversionNSDate:[NSString stringWithFormat:@"%2d-%2d-%2d",[endThreeBeforeYearStr intValue],[endThreeBeforeMonthStr intValue],[endThreeBeforeDayStr intValue]] hourMinSec:@""];
+    NSString *lastThreeDateForm = [self nsstringConversionNSDate:[NSString stringWithFormat:@"%d-%02d-%02d",[endThreeBeforeYearStr intValue],[endThreeBeforeMonthStr intValue],[endThreeBeforeDayStr intValue]] hourMinSec:@""];
     NSString *nextBegainTimeDateForm = [self nsstringConversionNSDate:begainStr hourMinSec:@""];
     if ([nextBegainTimeDateForm compare:lastThreeDateForm options:NSNumericSearch] == NSOrderedAscending) {
         isContentThree = NO;
@@ -334,7 +334,7 @@ typedef enum:NSInteger{
 }
 //设置当月的随机一个时间，来计算当月的天数
 - (NSInteger)accountDaysWithYear:(NSString *)year month:(NSString *)month {
-    NSString *dateStr = [NSString stringWithFormat:@"%@-%2d-05 12:12:12",year,[month intValue]];
+    NSString *dateStr = [NSString stringWithFormat:@"%@-%02d-05 12:12:12",year,[month intValue]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSDate *tempDate = [dateFormatter dateFromString:dateStr];
