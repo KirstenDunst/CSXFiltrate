@@ -341,9 +341,9 @@
  * 返回有多少天
  */
 - (NSInteger)daysInSelectMonth{
-    NSInteger yearRow = [yearPicker selectedRowInComponent:0] % self.yearArray.count;
+    NSInteger yearRow = [yearPicker selectedRowInComponent:0] % self.yearShowArr.count;
     NSInteger monthRow = [monthPicker selectedRowInComponent:0] % 12;
-    NSInteger monthDays = [self LeapYearCompare:[self.yearArray[yearRow] integerValue] withMonth:(monthRow + 1)];
+    NSInteger monthDays = [self LeapYearCompare:[self.yearShowArr[yearRow] integerValue] withMonth:(monthRow + 1)];
     [self.dayShowArr removeAllObjects];
     if (timeShowMode == ShowTimeAfterToday || timeShowMode == ShowTimeBeforeToday) {
         if ([self.yearShowArr[yearRow] integerValue] == currentYear ) {
@@ -375,15 +375,15 @@
     NSString *yearStr = @"";
     NSString *monthStr = @"";
     NSString *dayStr = @"";
-    NSInteger yearRow = [yearPicker selectedRowInComponent:0]  % self.yearArray.count;
+    NSInteger yearRow = [yearPicker selectedRowInComponent:0]  % self.yearShowArr.count;
     NSInteger monthRow = [monthPicker selectedRowInComponent:0];
     NSInteger dayRow = [dayPicker selectedRowInComponent:0];
-    yearStr = self.yearArray[yearRow];
+    yearStr = self.yearShowArr[yearRow];
     
-    NSInteger monthDays = [self LeapYearCompare:[self.yearArray[yearRow] integerValue] withMonth:(monthRow + 1)];
+    NSInteger monthDays = [self LeapYearCompare:[self.yearShowArr[yearRow] integerValue] withMonth:(monthRow + 1)];
     switch (timeShowMode) {
         case ShowTimeBeforeToday :
-            if ([self.yearArray[yearRow] integerValue] == currentYear) {
+            if ([self.yearShowArr[yearRow] integerValue] == currentYear) {
                 monthStr  =  [NSString stringWithFormat:@"%ld",[self.monthShowArr[monthRow] integerValue] + 1];
                 if ([self.monthShowArr[monthRow] integerValue] + 1 == currentMonth) {
                     dayStr = [NSString stringWithFormat:@"%ld",[self.dayShowArr[dayRow] integerValue] + 1];
